@@ -9,7 +9,6 @@ const main = async () => {
      **/
     const owner = core.getInput('owner', { required: true });
     const repo = core.getInput('repo', { required: true });
-    const pr_number = core.getInput('pr_number', { required: true });
     const token = core.getInput('token', { required: true });
 
     /**
@@ -31,8 +30,7 @@ const main = async () => {
      */
     const { data: changedFiles } = await octokit.rest.pulls.listFiles({
       owner,
-      repo,
-      pull_number: pr_number,
+      repo
     });
 
 
@@ -69,28 +67,24 @@ const main = async () => {
           await octokit.rest.issues.addLabels({
             owner,
             repo,
-            issue_number: pr_number,
             labels: ['markdown'],
           });
         case 'js':
           await octokit.rest.issues.addLabels({
             owner,
             repo,
-            issue_number: pr_number,
             labels: ['javascript'],
           });
         case 'yml':
           await octokit.rest.issues.addLabels({
             owner,
             repo,
-            issue_number: pr_number,
             labels: ['yaml'],
           });
         case 'yaml':
           await octokit.rest.issues.addLabels({
             owner,
             repo,
-            issue_number: pr_number,
             labels: ['yaml'],
           });
       }
@@ -103,7 +97,6 @@ const main = async () => {
     await octokit.rest.issues.createComment({
       owner,
       repo,
-      issue_number: pr_number,
       body: `
         ciao ciao
       `
