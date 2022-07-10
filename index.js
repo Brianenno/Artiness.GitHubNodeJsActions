@@ -12,11 +12,13 @@ const main = async () => {
     const token = core.getInput('token', { required: true });
 
     const octokit = new github.getOctokit(token);
+    console.log('Checkpoint (1)');
     
     const { data: changedFiles } = await octokit.rest.pulls.listFiles({
       owner,
       repo
     });
+    console.log('Checkpoint (2)');
 
     for (const file of changedFiles) {
       console.log(`file is = '${file}'`);
@@ -27,6 +29,8 @@ const main = async () => {
     console.log(`The changedFiles is = '${changedFiles}'`);
 
   } catch (error) {
+    console.log(error);
+    console.log(error.message);
     core.setFailed(error.message);
   }
 }
