@@ -11,9 +11,8 @@ const main = async () => {
     const repo = core.getInput('repo', { required: true });
     const token = core.getInput('token', { required: true });
 
-    console.log(`The Owner is = '${owner}'`);
-    console.log(`The Repo is = '${repo}'`);
-    console.log(`The Token is = '${token.toString()}'`);
+    const octokit = new github.getOctokit(token);
+    console.log(`The owner is = '${owner.toString()}'`);
 
   } catch (error) {
     core.setFailed(error.message);
