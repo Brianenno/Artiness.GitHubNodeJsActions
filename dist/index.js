@@ -9017,7 +9017,7 @@ const main = async () => {
 
     console.log(`The Owner is = '${owner}'`);
     console.log(`The Repo is = '${repo}'`);
-    console.log(`The Token is = '${token}'`);
+    console.log(`The Token is = '${token.toString()}'`);
 
   } catch (error) {
     core.setFailed(error.message);
