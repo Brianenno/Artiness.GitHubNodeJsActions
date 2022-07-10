@@ -9016,7 +9016,19 @@ const main = async () => {
     const token = core.getInput('token', { required: true });
 
     const octokit = new github.getOctokit(token);
-    console.log(`The owner is = '${owner.toString()}'`);
+    
+    const { data: changedFiles } = await octokit.rest.pulls.listFiles({
+      owner,
+      repo
+    });
+
+    for (const file of changedFiles) {
+      console.log(`file is = '${file}'`);
+      console.log(`file.filename is = '${file.filename}'`);
+      
+    }
+
+    console.log(`The changedFiles is = '${changedFiles}'`);
 
   } catch (error) {
     core.setFailed(error.message);
