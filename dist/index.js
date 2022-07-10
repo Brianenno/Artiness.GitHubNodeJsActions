@@ -9015,7 +9015,7 @@ const main = async () => {
     const repo = core.getInput('repo', { required: true });
     const token = core.getInput('token', { required: true });
 
-    console.log(`The Owner is = '${soMany}'`);
+    console.log(`The Owner is = '${owner}'`);
     console.log(`The Repo is = '${repo}'`);
     console.log(`The Token is = '${token}'`);
 
