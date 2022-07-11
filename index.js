@@ -14,21 +14,34 @@ const main = async () => {
 
     const octokit = new github.getOctokit(token);
     console.log('Checkpoint (1)');
-    console.log(push_sha);
     
-    const { data: changedFiles } = await octokit.rest.pulls.listFiles({
-      owner,
-      repo
+    // https://api.github.com/repos/Brianenno/PR-metadata-action/commits/425e7c142ffba3cfc13932873efca5fba6964043
+    
+    const data = await octokit.request("POST /repos/{owner}/{repo}/commits/{push_sha}", {
+      owner: "octocat",
+      repo: "hello-world",
+      push_sha: push_sha
     });
-    console.log('Checkpoint (2)');
 
-    for (const file of changedFiles) {
-      console.log(`file is = '${file}'`);
-      console.log(`file.filename is = '${file.filename}'`);
-      
+    console.log('Checkpoint (2)');
+    console.log(data);
+
+    if(data) {
+      console.log('Checkpoint (3)');
+      if(data.commit) {
+        console.log('Checkpoint (4)');
+        if(data.commit.message) {
+          console.log('Checkpoint (5)');
+          console.log(data.commit.message);
+        }
+      }
     }
 
-    console.log(`The changedFiles is = '${changedFiles}'`);
+    // const { data: changedFiles } = await octokit.rest.pulls.listFiles({
+    //   owner,
+    //   repo
+    // });
+    // console.log('Checkpoint (2)');
 
   } catch (error) {
     console.log(error);
