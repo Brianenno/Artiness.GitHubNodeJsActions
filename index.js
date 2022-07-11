@@ -42,7 +42,10 @@ const main = async () => {
     console.log('dammi il paren:');
     console.log(parentPath);
 
-    const coords = getDirectories('/home/runner/work/PR-metadata-action/PR-metadata-action/', (result) => {
+    // const folderPath = '/home/runner/work/PR-metadata-action/PR-metadata-action/';
+    const folderPath = '/home/runner/work/PR-metadata-action/';
+
+    const coords = getDirectories(folderPath, (result) => {
       console.log('stampa directories :');
         console.log(result);
     })
