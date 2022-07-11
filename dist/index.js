@@ -9014,7 +9014,7 @@ const getDirectories = (source, callback) =>
     } else {
       callback(
         files
-          .filter(dirent => dirent.isDirectory())
+          //.filter(dirent => dirent.isDirectory())
           .map(dirent => dirent.name)
       )
     }
