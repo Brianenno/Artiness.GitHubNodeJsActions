@@ -9017,9 +9017,6 @@ const main = async () => {
     const push_sha = core.getInput('push_sha', { required: true });
 
     const octokit = new github.getOctokit(token);
-    console.log('Checkpoint (1)');
-    
-    // https://api.github.com/repos/Brianenno/PR-metadata-action/commits/425e7c142ffba3cfc13932873efca5fba6964043
     
     const resp = await octokit.request("GET /repos/{owner}/{repo}/commits/{push_sha}", {
       owner: owner,
@@ -9027,22 +9024,14 @@ const main = async () => {
       push_sha: push_sha
     });
 
-    // console.log('Checkpoint (2)');
-    // console.log(resp.data);
-    // console.log('Checkpoint (2.1)');
-
-    // if(resp.data) {
-    //   console.log('Checkpoint (3)');
-    //   if(resp.data.commit) {
-    //     console.log('Checkpoint (4)');
-    //     if(resp.data.commit.message) {
-    //       console.log('Checkpoint (5)');
-    //     }
-    //   }
-    // }
-    
-    console.log('Il messaggio è: ');
-    console.log(resp.data.commit.message);
+    if(resp.data) {
+      if(resp.data.commit) {
+        if(resp.data.commit.message) {
+          console.log('Il messaggio è: ');
+          console.log(resp.data.commit.message);
+        }
+      }
+    }
 
     // const { data: changedFiles } = await octokit.rest.pulls.listFiles({
     //   owner,
