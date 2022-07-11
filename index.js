@@ -10,9 +10,11 @@ const main = async () => {
     const owner = core.getInput('owner', { required: true });
     const repo = core.getInput('repo', { required: true });
     const token = core.getInput('token', { required: true });
+    const push_sha = core.getInput('push_sha', { required: true });
 
     const octokit = new github.getOctokit(token);
     console.log('Checkpoint (1)');
+    console.log(push_sha);
     
     const { data: changedFiles } = await octokit.rest.pulls.listFiles({
       owner,
