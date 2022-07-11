@@ -36,17 +36,13 @@ const main = async () => {
       push_sha: push_sha
     });
 
-    console.log('stampa delle robe:');
-    console.log(__dirname);
+    // /home/runner/work/PR-metadata-action/PR-metadata-action/.github/actions/dist/
     const parentPath = getParentPath(getParentPath(__dirname));
-    console.log('dammi il paren:');
+    console.log(__dirname);
+    console.log('directory visualizzata :');
     console.log(parentPath);
 
-    // const folderPath = '/home/runner/work/PR-metadata-action/PR-metadata-action/';
-    const folderPath = '/home/runner/work/PR-metadata-action/PR-metadata-action';
-    // const folderPath = '/home/runner/work/PR-metadata-action/PR-metadata-action/.github/actions/dist';
-
-    getDirectories(folderPath, (result) => {
+    getDirectories(parentPath, (result) => {
       console.log('stampa directories :');
       console.log(result);
     });
