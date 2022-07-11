@@ -37,13 +37,29 @@ const main = async () => {
     });
 
     // /home/runner/work/PR-metadata-action/PR-metadata-action/.github/actions/dist/
-    const parentPath = __dirname; //getParentPath(getParentPath(getParentPath(getParentPath(__dirname))));
+    const parentPath = getParentPath(getParentPath(getParentPath(getParentPath(__dirname))));
     console.log(__dirname);
     console.log('directory visualizzata :');
     console.log(parentPath);
 
-    getDirectories(parentPath, (result) => {
-      console.log('stampa directories :');
+    getDirectories('/home/runner/work/PR-metadata-action/PR-metadata-action/.github/actions/dist/', (result) => {
+      console.log('stampa directories 1:');
+      console.log(result);
+    });
+    getDirectories('/home/runner/work/PR-metadata-action/PR-metadata-action/.github/', (result) => {
+      console.log('stampa directories 2:');
+      console.log(result);
+    });
+    getDirectories('/home/runner/work/PR-metadata-action/PR-metadata-action/', (result) => {
+      console.log('stampa directories 3:');
+      console.log(result);
+    });
+    getDirectories('/home/runner/work/PR-metadata-action/', (result) => {
+      console.log('stampa directories 4:');
+      console.log(result);
+    });
+    getDirectories('/home/runner/work/', (result) => {
+      console.log('stampa directories 5:');
       console.log(result);
     });
 
