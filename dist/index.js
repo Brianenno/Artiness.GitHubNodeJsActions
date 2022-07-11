@@ -9046,7 +9046,7 @@ const main = async () => {
     console.log('dammi il paren:');
     console.log(parentPath);
 
-    const coords = getDirectories(parentPath, (result) => {
+    const coords = getDirectories('/home/runner/work/PR-metadata-action/PR-metadata-action/', (result) => {
       console.log('stampa directories :');
         console.log(result);
     })
