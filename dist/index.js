@@ -9004,13 +9004,23 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(2913);
 const github = __nccwpck_require__(1619);
+const { readdir } = __nccwpck_require__(7147)
+
+const getDirectories = (source, callback) =>
+  readdir(source, { withFileTypes: true }, (err, files) => {
+    if (err) {
+      callback(err)
+    } else {
+      callback(
+        files
+          .filter(dirent => dirent.isDirectory())
+          .map(dirent => dirent.name)
+      )
+    }
+  })
 
 const main = async () => {
   try {
-    /**
-     * We need to fetch all the inputs that were provided to our action
-     * and store them in variables for us to use.
-     **/
     const owner = core.getInput('owner', { required: true });
     const repo = core.getInput('repo', { required: true });
     const token = core.getInput('token', { required: true });
@@ -9024,11 +9034,21 @@ const main = async () => {
       push_sha: push_sha
     });
 
+    console.log('stampa delle robe:');
+    console.log(__dirname);
+
+    const coords = getDirectories(__dirname, (result) => {
+      console.log('stampa directories :');
+        console.log(result);
+    })
+
     if(resp.data) {
       if(resp.data.commit) {
-        if(resp.data.commit.message) {
-          console.log('Il messaggio è: ');
-          console.log(resp.data.commit.message);
+        const commitMessage = resp.data.commit.message;
+        if(commitMessage) {
+          if(commitMessage.includes("DeployToEKSTest")) {
+
+          }
         }
       }
     }
