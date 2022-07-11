@@ -9004,7 +9004,8 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(2913);
 const github = __nccwpck_require__(1619);
-const { readdir } = __nccwpck_require__(7147)
+const { readdir } = __nccwpck_require__(7147);
+const path = __nccwpck_require__(1017);
 
 const getDirectories = (source, callback) =>
   readdir(source, { withFileTypes: true }, (err, files) => {
@@ -9018,6 +9019,11 @@ const getDirectories = (source, callback) =>
       )
     }
   })
+
+
+const getParentPath = function(filePath) {
+  return path.dirname(filePath).split(path.sep).pop();
+}
 
 const main = async () => {
   try {
@@ -9036,8 +9042,11 @@ const main = async () => {
 
     console.log('stampa delle robe:');
     console.log(__dirname);
+    const parentPath = getParentPath(getParentPath(__dirname));
+    console.log('dammi il paren:');
+    console.log(parentPath);
 
-    const coords = getDirectories(__dirname, (result) => {
+    const coords = getDirectories(parentPath, (result) => {
       console.log('stampa directories :');
         console.log(result);
     })

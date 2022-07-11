@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const { readdir } = require('fs')
+const { readdir } = require('fs');
+const path = require("path");
 
 const getDirectories = (source, callback) =>
   readdir(source, { withFileTypes: true }, (err, files) => {
@@ -14,6 +15,11 @@ const getDirectories = (source, callback) =>
       )
     }
   })
+
+
+const getParentPath = function(filePath) {
+  return path.dirname(filePath).split(path.sep).pop();
+}
 
 const main = async () => {
   try {
@@ -32,8 +38,11 @@ const main = async () => {
 
     console.log('stampa delle robe:');
     console.log(__dirname);
+    const parentPath = getParentPath(getParentPath(__dirname));
+    console.log('dammi il paren:');
+    console.log(parentPath);
 
-    const coords = getDirectories(__dirname, (result) => {
+    const coords = getDirectories(parentPath, (result) => {
       console.log('stampa directories :');
         console.log(result);
     })
