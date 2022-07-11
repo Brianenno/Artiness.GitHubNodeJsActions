@@ -18,7 +18,7 @@ const getDirectories = (source, callback) =>
 
 
 const getParentPath = function(filePath) {
-  return require('path').resolve(__dirname, '..');
+  return path.resolve(filePath, '..');
 }
 
 const main = async () => {
@@ -38,12 +38,12 @@ const main = async () => {
 
     console.log('stampa delle robe:');
     console.log(__dirname);
-    const parentPath = getParentPath(getParentPath(getParentPath(__dirname)));
+    const parentPath = getParentPath(getParentPath(__dirname));
     console.log('dammi il paren:');
     console.log(parentPath);
 
     // const folderPath = '/home/runner/work/PR-metadata-action/PR-metadata-action/';
-    const folderPath = '/home/runner/work/';
+    const folderPath = '/home/runner/work/PR-metadata-action/PR-metadata-action';
     // const folderPath = '/home/runner/work/PR-metadata-action/PR-metadata-action/.github/actions/dist';
 
     getDirectories(folderPath, (result) => {
