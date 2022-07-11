@@ -24,7 +24,8 @@ const main = async () => {
     });
 
     console.log('Checkpoint (2)');
-    console.log(data);
+    console.log(data.data);
+    console.log('Checkpoint (2.1)');
 
     if(data) {
       console.log('Checkpoint (3)');
