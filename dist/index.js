@@ -9022,8 +9022,8 @@ const main = async () => {
     // https://api.github.com/repos/Brianenno/PR-metadata-action/commits/425e7c142ffba3cfc13932873efca5fba6964043
     
     const data = await octokit.request("POST /repos/{owner}/{repo}/commits/{push_sha}", {
-      owner: "octocat",
-      repo: "hello-world",
+      owner: owner,
+      repo: repo,
       push_sha: push_sha
     });
 
