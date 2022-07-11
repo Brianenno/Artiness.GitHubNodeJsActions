@@ -37,7 +37,7 @@ const main = async () => {
     });
 
     // /home/runner/work/PR-metadata-action/PR-metadata-action/.github/actions/dist/
-    const parentPath = getParentPath(getParentPath(getParentPath(__dirname)));
+    const parentPath = getParentPath(getParentPath(getParentPath(getParentPath(__dirname))));
     console.log(__dirname);
     console.log('directory visualizzata :');
     console.log(parentPath);
