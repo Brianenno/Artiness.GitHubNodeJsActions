@@ -9022,7 +9022,7 @@ const getDirectories = (source, callback) =>
 
 
 const getParentPath = function(filePath) {
-  return path.dirname(filePath).split(path.sep).pop();
+  return (__nccwpck_require__(1017).resolve)(__dirname, '..');
 }
 
 const main = async () => {
@@ -9048,11 +9048,12 @@ const main = async () => {
 
     // const folderPath = '/home/runner/work/PR-metadata-action/PR-metadata-action/';
     const folderPath = '/home/runner/work/PR-metadata-action/';
+    // const folderPath = '/home/runner/work/PR-metadata-action/PR-metadata-action/.github/actions/dist';
 
-    const coords = getDirectories(folderPath, (result) => {
+    getDirectories(folderPath, (result) => {
       console.log('stampa directories :');
-        console.log(result);
-    })
+      console.log(result);
+    });
 
     if(resp.data) {
       if(resp.data.commit) {
